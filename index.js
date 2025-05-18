@@ -1,12 +1,12 @@
-let publicVapidKey = ""; // Thay bằng public key từ backend
+let publicVapidKey = "BNtvnnenga8CvUR4Nq7X8QNECPKwJoOz8Xm-KCFDKE6NlVw56AhzurG0OCyMie-zPMxJtwVqMk6OhYX6d3MEISU"; // Thay bằng public key từ backend
 
-fetch("https://gg-sheet-notification.vercel.app/get_public_key")
-  .then(data => data.json())
-  .then(res => {
-    publicVapidKey = res.publicKey
-    console.log(publicVapidKey)
-  })
-  .catch(err => console.log(err))
+// fetch("https://gg-sheet-notification.vercel.app/get_public_key")
+//   .then(data => data.json())
+//   .then(res => {
+//     publicVapidKey = res.publicKey
+//     console.log(publicVapidKey)
+//   })
+//   .catch(err => console.log(err))
 
 // Hàm chuyển base64 URL-safe sang Uint8Array (để dùng với PushManager)
 function urlBase64ToUint8Array(base64String) {
@@ -17,6 +17,8 @@ function urlBase64ToUint8Array(base64String) {
 }
 
 document.getElementById('subscribeBtn').onclick = async () => {
+
+  
   if (!('serviceWorker' in navigator)) {
     alert('Trình duyệt không hỗ trợ Service Worker');
     return;
@@ -37,6 +39,7 @@ document.getElementById('subscribeBtn').onclick = async () => {
     userVisibleOnly: true,
     applicationServerKey: urlBase64ToUint8Array(publicVapidKey),
   });
+  console.log("vailon")
 
   console.log(subscription)
 
